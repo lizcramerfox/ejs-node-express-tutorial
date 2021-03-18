@@ -4,15 +4,15 @@ const app = express();
 const port = 3000;
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs');
 
 // setup public folder for static files
-app.use(express.static('./public'));
+app.use(express.static('./public'))
 
 app.get('/', (req, res) => {
     res.render('pages/home')
-});
+})
 
 app.get('/links', (req, res) => {
   let items = [
@@ -21,8 +21,13 @@ app.get('/links', (req, res) => {
     {name:'expressjs',url:'https://expressjs.com'},
     {name:'vuejs',url:'https://vuejs.org'},
     {name:'nextjs',url:'https://nextjs.org'},
-  ];
+  ]
   res.render('pages/links', { links: items })
 })
 
-app.listen(port, () => console.log(`MasterEJS app Started on port ${port}!`));
+app.get('/list', (req, res) => {
+  let items = ['node.js', 'expressjs', 'ejs', 'javascript', 'bootstrap']
+  res.render('pages/list', { list: items })
+})
+
+app.listen(port, () => console.log(`MasterEJS app Started on port ${port}!`))
